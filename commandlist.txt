@@ -1,0 +1,36 @@
+Inside that directory, you can run several commands:
+
+  npx playwright test
+    Runs the end-to-end tests.
+
+  npx playwright test --ui
+    Starts the interactive UI mode.
+
+  npx playwright test --project=chromium
+    Runs the tests only on Desktop Chrome.
+
+  npx playwright test example
+    Runs the tests in a specific file.
+
+  npx playwright test --debug
+    Runs the tests in debug mode.
+
+  npx playwright codegen
+    Auto generate tests with Codegen.
+
+We suggest that you begin by typing:
+
+    npx playwright test
+
+o read a .properties file in TypeScript, you can use a package like properties-file, which is a modern library written entirely in TypeScript. It allows you to parse .properties files and work with them as key-value pair objects. Here’s an example of how you can use it
+    npm install properties-file
+
+
+    read xml library
+    npm install xml2js
+
+    install dotenv
+    npm install dotenv --save
+
+    install xsd2ts to generates TypeScript interfaces from XSD files. 
+    npm install -g xsd2ts
