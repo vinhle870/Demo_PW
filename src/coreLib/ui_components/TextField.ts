@@ -5,17 +5,21 @@ export class TextField extends baseComponent
 {
    
     
-    constructor(indentifier:string)
+    constructor(page:Page,selector:string)
     {
-      super(indentifier);
-      this.locator = this.page.getByRole('textbox', { name:  this.indentifier});
+      super(page,selector);
+           
     }
 
-    async fill(value:string)
+    async clearText()
     {
-        (await this.getLocator()).fill(value);
+
     }
 
+    async fillText(text:string)
+    {
+      await this.locator.fill(text);
+      console
+    }
 
-
-}
+  }

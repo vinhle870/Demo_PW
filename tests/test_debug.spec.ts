@@ -44,8 +44,9 @@ test('Read Properties File', async ({ page }) => {
 test('Read .env File', async ({ page }) => {
 
   let dealer_user =  await envReader.getDealerAccountLogin();
-  console.log(dealer_user.username);
-  console.log(dealer_user.password);
+  let url = await envReader.getDealerUrl();
+  console.log(url);
+  //console.log(dealer_user.password);
 
 })
 

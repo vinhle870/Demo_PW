@@ -3,11 +3,7 @@ import * as dotenv from 'dotenv';
 
 export class envReader{
 
-      constructor()
-    {
-         
-    }
-    
+     
       static async getDealerAccountLogin()
     {
       dotenv.config();  
@@ -15,9 +11,9 @@ export class envReader{
         let username = process.env.DealerUsername as string;
         let pass = process.env.DealerPassword as string;
 
-        await dealerLogin.setUserName(username) ;
+         dealerLogin.username = username;
         
-        await dealerLogin.setPassword(pass) ;
+         dealerLogin.password = pass ;
        
         return dealerLogin;
 
@@ -26,7 +22,9 @@ export class envReader{
 
     static async getDealerUrl()
     {
-      dotenv.config();    
-      return process.env.DealerUrl as string;
+      dotenv.config(); 
+      let url:string;
+      url = process.env.DealerUrl as string;
+      return url; 
     }
 }

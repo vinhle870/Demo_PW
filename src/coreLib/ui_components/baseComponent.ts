@@ -4,19 +4,25 @@ export class baseComponent
 {
     page:Page;
     locator:Locator;
-    indentifier:string
-    
-    constructor(indentifier:string)
+    selector:string
+
+  
+    constructor(page:Page,selector:string)
     {
-      this.indentifier = indentifier;
+      this.page = page;
+      this.locator = this.page.locator(selector);
+    
     }
 
-    async getLocator()
+
+
+    getLocator()
     {
+      
       return this.locator;
     }
 
-    
+     
 
 
 }

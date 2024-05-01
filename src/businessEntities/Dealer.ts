@@ -1,20 +1,13 @@
 export class Dealer
 {
+    username:string;
+    password:string;
     constructor()
     {
 
     };
 
-    username:string;
-    password:string;
+   
  
-    async setUserName(username:string)
-    {
-        this.username = username;
-    }
-
-    async setPassword(password:string)
-    {
-        this.password = password;
-    }
+  
 }

@@ -5,15 +5,15 @@ export class Button extends baseComponent
 {
    
     
-    constructor(indentifier:string)
-    {
-      super(indentifier);
-      this.locator = this.page.getByRole('button', { name:  this.indentifier});
-    }
+  constructor(page:Page,selector:string)
+  {
+    super(page,selector);
+         
+  }
 
     async click()
     {
-      (await this.getLocator()).click();
+      await this.locator.click();
     }
 
 
