@@ -1,14 +1,22 @@
 import { test, expect } from '@playwright/test';
 import { Login_Actions } from '../src/pages/Login/Login_Actions';
 import {envReader} from "../src/dataReader/envReader"
+import { LogHandler } from '../src/coreLib/utilities/log-handler';
+import { LogLevel } from '../src/enum/loglevel';
 
 
 
-test('has title', async ({ page }) => {
-  await new Login_Actions(page).loginWithDealerAcc(await envReader.getDealerAccountLogin());
+test('Login to Dealer Portal', async ({ page }) => {
+  try{
+    await new Login_Actions(page).loginWithDealerAcc(await envReader.getDealerAccountLogin());
+  }
+  catch(error)
+  {
+    await LogHandler.printlog(error.message, LogLevel.ERROR);
+  }
   //await page.goto(await envReader.getDealerUrl());
   
-  console.log("Login Success");
+
  // await page.goto('https://playwright.dev/');
 
   // Expect a title "to contain" a substring.

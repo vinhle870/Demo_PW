@@ -5,21 +5,6 @@ export class TextField extends baseComponent
 {
    
     
-    constructor(page:Page,selector:string)
-    {
-      super(page,selector);
-           
-    }
-
-    async clearText()
-    {
-
-    }
-
-    async fillText(text:string)
-    {
-      await this.locator.fill(text);
-      console
-    }
+   
 
   }

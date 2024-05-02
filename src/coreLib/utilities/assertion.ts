@@ -1,7 +1,10 @@
+import { expect } from "@playwright/test"
+
 export class assertion
 {
-    async isTextEqual (actualText,expectedText)
+    static assertTextExact = (actualText:string,expectedText:string)=>
     {
-        
+        expect.soft(actualText).toEqual(expectedText)
     }
+
 }

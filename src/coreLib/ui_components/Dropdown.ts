@@ -5,11 +5,7 @@ export class Dropdown extends baseComponent
 {
    
     
-    constructor(indentifier:string)
-    {
-      super(indentifier);
-      this.locator = this.page.getByRole('listitem', { name:  this.indentifier});
-    }
+    
 
 
 

@@ -2,12 +2,13 @@ import { getProperties } from 'properties-file';
 import { readFileSync } from 'node:fs'
 export class propertiesReader
 {
-    constructor()
-    {
-        
-    }
-    
-    static async readProperties(filePath: string): Promise<Record<string, string>> {
+     
+  /**
+   * Read data from .properties file
+   * @param filePath 
+   * @returns string key-value
+   */  
+  static async readProperties(filePath: string): Promise<Record<string, string>> {
         try {
           const properties = await getProperties(readFileSync(filePath));
           console.dir(properties);

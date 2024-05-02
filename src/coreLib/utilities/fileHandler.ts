@@ -3,34 +3,27 @@ import { promises as fsPromises } from 'fs';
 export class fileHandler
 
 {
-    txtData:string;
-   
-
-    constructor()
-    {
-
-    }
-
-    async readFile(filepath:string)
+    /**
+     * Read raw data from .xml, .json, .txt
+     * @param filepath 
+     * @returns string
+     */
+    async readRawFile(filepath:string): Promise<string | undefined>
     {
        
-        // Read the Txt file
-        await fsPromises.readFile(filepath, 'utf-8')
-        .then((rawdata) => {
-
-            this.txtData = rawdata;
-            
-            })
-        .catch((error) => {
+        try{
+            let data = await fsPromises.readFile(filepath, 'utf-8');
+            return data;
+        }
+      
+        catch(error) {
         console.error('Error reading file:', error);
-        });
+        return undefined
+        };
+       
     }
 
-    async getFileContent()
-    {
-       
-        return this.txtData;
-    }
+   
 
 
 }

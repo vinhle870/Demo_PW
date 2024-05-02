@@ -1,5 +1,5 @@
 import {type Locator, type Page } from '@playwright/test';
-export class uiPage
+export class BasePage
 
 {
     readonly page:Page;
@@ -11,6 +11,11 @@ export class uiPage
     async navigatetoPage(url:string)
     {
         await this.page.goto(url);
+    }
+
+    async getLocator(selector:string):Promise<Locator>{
+        return await this.page.locator(selector);
+
     }
 
 

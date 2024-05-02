@@ -7,19 +7,19 @@ export class xmlHandler extends fileHandler
 {
     xmlObject:any;
 
-    constructor()
-    {
-        super();
-    }
-/**Return xmlObject: object */
-    async parseXmlDataToObject(filepath:string)
+   
+/**
+ * Convert xml format text to javascript object
+ * @param filepath 
+ * @returns return javascript object or undefined value if any error
+ */
+    async parseXmlDataToObject(filepath:string): Promise<object|undefined>
     {
         try {
             
             let xmlData;
-            await this.readFile(filepath); 
-            console.log("Raw Data: "+ await this.getFileContent());
-            parseString(await this.getFileContent(), (err,result)=>{
+            let rawdata = await this.readRawFile(filepath) as string; 
+            parseString(rawdata, (err,result)=>{
                 xmlData = result;
             });
             return xmlData;
