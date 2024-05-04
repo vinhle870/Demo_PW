@@ -1,4 +1,4 @@
-import { Dealer } from "../businessEntities/Dealer";
+import { Dealer } from "../businessEntities/dealer";
 import * as dotenv from 'dotenv';
 
 export class envReader{

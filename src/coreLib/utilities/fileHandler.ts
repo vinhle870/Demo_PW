@@ -8,7 +8,7 @@ export class fileHandler
      * @param filepath 
      * @returns string
      */
-    async readRawFile(filepath:string): Promise<string | undefined>
+    static async readRawFile(filepath:string): Promise<string | undefined>
     {
        
         try{

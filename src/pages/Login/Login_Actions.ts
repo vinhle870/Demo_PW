@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import {LoginPage} from "./login-page";
-import { Dealer } from "../../businessEntities/Dealer";
+import { Dealer } from "../../businessEntities/dealer";
 import {envReader} from "../../dataReader/envReader";
 import { LogHandler } from "../../coreLib/utilities/log-handler";
 import { LogLevel } from "../../enum/loglevel";

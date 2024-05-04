@@ -3,28 +3,12 @@ import { xmlHandler} from '../src/coreLib/utilities/xmlHandler';
 import { jsonHandler} from '../src/coreLib/utilities/jsonHandler';
 import { propertiesReader } from '../src/coreLib/utilities/propertiesReader';
 import {envReader} from '../src/dataReader/envReader';
-import { Dealer } from '../src/businessEntities/Dealer';
 
-test('Debug', async ({ page }) => {
-  let xmlReader = new xmlHandler();
-  let xmlRootObject = await xmlReader.parseXmlDataToObject("D:/AutomationProject/Demo_PW/src/resources/environments/Staging_TestData.xml")
-  console.dir(xmlRootObject.Data.AdminPortal);
-  //let xmlData = await xmlReader.getXmlRootObject();
+import { VehicleGen } from '../src/dataReader/vehicle-gen';
 
-  
-  
-  //READ JSON
-
-  let jsonReader = new jsonHandler();
-  jsonReader.parseJsonTextToObject("D:/AutomationProject/Demo_PW/src/resources/environments/testdata.json").then((data) =>{
-    console.log("JSON Object: "+data);
-  })
-  .catch((error)=>{
-
-    console.error('Error processing JSON file:', error);
-  })
-
-
+test('READ JSON', async ({ page }) => {
+  let vehicle = await VehicleGen.generateVehicleInfo();
+  console.dir(vehicle);
   
 })
 
@@ -49,4 +33,14 @@ test('Read .env File', async ({ page }) => {
   //console.log(dealer_user.password);
 
 })
+
+test('Generate VEhicle Info', async ({ page }) => {
+
+  let vehicleinfo = await VehicleGen.generateVehicleInfo(); 
+  console.dir(vehicleinfo);
+  console.log("DONE");
+
+})
+
+
 

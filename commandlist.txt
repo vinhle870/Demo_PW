@@ -34,3 +34,10 @@ o read a .properties file in TypeScript, you can use a package like properties-f
 
     install xsd2ts to generates TypeScript interfaces from XSD files. 
     npm install -g xsd2ts
+
+
+install library for randomly generating data
+npm install @faker-js/faker --save-dev
+
+For more extensive date manipulation and formatting, the date-fns library is a popular choice
+npm install date-fns
