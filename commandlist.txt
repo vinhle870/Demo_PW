@@ -32,7 +32,7 @@ o read a .properties file in TypeScript, you can use a package like properties-f
     install dotenv
     npm install dotenv --save
 
-    install xsd2ts to generates TypeScript interfaces from XSD files. 
+    install xsd2ts to generates TypeScript interfaces from XSD files.
     npm install -g xsd2ts
 
 
@@ -41,3 +41,6 @@ npm install @faker-js/faker --save-dev
 
 For more extensive date manipulation and formatting, the date-fns library is a popular choice
 npm install date-fns
+
+ESLint statically analyzes your code to quickly find problems. It is built into most text editors and you can run ESLint as part of your continuous integration pipeline.
+npm init @eslint/config

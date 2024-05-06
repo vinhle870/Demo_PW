@@ -1,22 +1,15 @@
-import {type Locator, type Page } from '@playwright/test';
-export class BasePage
+import { type Page } from '@playwright/test';
+import { BaseComponent } from '../coreLib/ui_components/base-component';
+export class BasePage {
+    page: Page;
+    baseComponent: BaseComponent;
 
-{
-    readonly page:Page;
-    constructor(page:Page)
-    {
+    constructor(page: Page) {
         this.page = page;
+        this.baseComponent = new BaseComponent(page);
     }
 
-    async navigatetoPage(url:string)
-    {
-        await this.page.goto(url);
+    async navigatetoPage(url: string) {
+        await this.baseComponent.page.goto(url);
     }
-
-    async getLocator(selector:string):Promise<Locator>{
-        return await this.page.locator(selector);
-
-    }
-
-
 }

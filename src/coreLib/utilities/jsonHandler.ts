@@ -1,19 +1,19 @@
 import { fileHandler } from "./fileHandler";
 export class jsonHandler extends fileHandler
 {
-         
+
     /**
      * Parse json String to javascript Object
-     * @param filepath 
+     * @param filepath
      * @returns javascript object or undefined if getting any error
      */
     static async parseJsonTextToObject(filepath:string):Promise<object | undefined>
     {
         try{
-        let rawdata = await this.readRawFile(filepath) as string; 
-        let jsonObject = JSON.parse(rawdata);
+        const rawdata = await this.readRawFile(filepath) as string;
+        const jsonObject = JSON.parse(rawdata);
 
-        return jsonObject;   
+        return jsonObject;
         }catch(error){
             console.error('Error reading or parsing JSON file:', error);
             throw error; // Or return a default value

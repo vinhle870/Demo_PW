@@ -5,20 +5,17 @@ import { fileHandler } from './fileHandler';
 export class xmlHandler extends fileHandler
 
 {
-    xmlObject:any;
 
-   
 /**
  * Convert xml format text to javascript object
- * @param filepath 
+ * @param filepath
  * @returns return javascript object or undefined value if any error
  */
-    async parseXmlDataToObject(filepath:string): Promise<object|undefined>
+    static async parseXmlDataToObject(filepath:string): Promise<object|undefined>
     {
         try {
-            
             let xmlData;
-            let rawdata = await this.readRawFile(filepath) as string; 
+            const rawdata = await this.readRawFile(filepath)
             parseString(rawdata, (err,result)=>{
                 xmlData = result;
             });
@@ -28,7 +25,5 @@ export class xmlHandler extends fileHandler
             return undefined;
           }
     }
-
-  
 
 }

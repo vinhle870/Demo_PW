@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
-import { xmlHandler} from '../src/coreLib/utilities/xmlHandler';
-import { jsonHandler} from '../src/coreLib/utilities/jsonHandler';
-import { propertiesReader } from '../src/coreLib/utilities/propertiesReader';
-import {envReader} from '../src/dataReader/envReader';
+import { xmlHandler} from '../../src/coreLib/utilities/xmlHandler';
+import { jsonHandler} from '../../src/coreLib/utilities/jsonHandler';
+import { propertiesReader} from '../../src/coreLib/utilities/propertiesReader';
+import {envReader} from '../../src/dataReader/envReader';
 
-import { VehicleGen } from '../src/dataReader/vehicle-gen';
+import { VehicleGen } from '../../src/dataReader/vehicle-gen';
 
 test('READ JSON', async ({ page }) => {
   let vehicle = await VehicleGen.generateVehicleInfo();
   console.dir(vehicle);
-  
+
 })
 
 
@@ -36,11 +36,8 @@ test('Read .env File', async ({ page }) => {
 
 test('Generate VEhicle Info', async ({ page }) => {
 
-  let vehicleinfo = await VehicleGen.generateVehicleInfo(); 
+  let vehicleinfo = await VehicleGen.generateVehicleInfo();
   console.dir(vehicleinfo);
   console.log("DONE");
 
 })
-
-
-
