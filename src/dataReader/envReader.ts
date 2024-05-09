@@ -12,7 +12,7 @@ export class envReader {
     const name = process.env.DealerName as string;
     dealerLogin['username'] = username;
     dealerLogin['password'] = pass;
-    dealerLogin['DealerName'] = name;
+    dealerLogin['dealername'] = name;
     console.dir(dealerLogin);
     return dealerLogin;
   }
