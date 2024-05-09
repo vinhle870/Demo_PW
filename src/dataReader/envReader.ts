@@ -6,7 +6,6 @@ export class envReader {
 
 
   static async getDealerAccountLogin() {
-    dotenv.config();
     const dealerLogin = await JsonHandling.parseJsonTextToObject(BUSINESS_ENTITY_FOLDER + "dealer.json") as object;
     const username = process.env.DealerUsername as string;
     const pass = process.env.DealerPassword as string;
@@ -19,7 +18,6 @@ export class envReader {
   }
 
   static async getDealerUrl() {
-    dotenv.config();
     const url = process.env.DealerUrl as string;
     return url;
   }

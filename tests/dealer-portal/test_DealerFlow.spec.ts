@@ -6,7 +6,8 @@ import { HomePageActions } from '../../src/pages/HomePage/home-page-actions';
 test('TC01: Successfully Login to Dealer Portal', async ({ page }) => {
 
     //Get Daler Account Info
-    const dealeraccount = await envReader.getDealerAccountLogin();
+    let dealeraccount = await envReader.getDealerAccountLogin();
+    console.log("Dealer account: "+dealeraccount['username'] +" - "+dealeraccount['password'])
 
     //Log Into Dealer Portal
     await new LoginPageActions(page).loginWithDealerAcc(dealeraccount);
