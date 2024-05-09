@@ -6,14 +6,14 @@ export class envReader {
 
 
   static async getDealerAccountLogin() {
-    const dealerLogin = await JsonHandling.parseJsonTextToObject(BUSINESS_ENTITY_FOLDER + "dealer.json") as object;
+    let dealerLogin = await JsonHandling.parseJsonTextToObject(BUSINESS_ENTITY_FOLDER + "dealer.json") as object;
     const username = process.env.DealerUsername as string;
     const pass = process.env.DealerPassword as string;
     const name = process.env.DealerName as string;
     dealerLogin['username'] = username;
     dealerLogin['password'] = pass;
     dealerLogin['DealerName'] = name;
-
+    console.dir(dealerLogin);
     return dealerLogin;
   }
 
