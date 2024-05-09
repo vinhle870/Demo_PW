@@ -1,13 +1,13 @@
 import { getProperties } from 'properties-file';
 import { readFileSync } from 'node:fs'
-export class propertiesReader
+export class PropertiesReader
 {
-     
+
   /**
    * Read data from .properties file
-   * @param filePath 
+   * @param filePath
    * @returns string key-value
-   */  
+   */
   static async readProperties(filePath: string): Promise<Record<string, string>> {
         try {
           const properties = await getProperties(readFileSync(filePath));

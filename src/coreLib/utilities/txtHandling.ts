@@ -1,6 +1,6 @@
 import { promises as fsPromises } from 'fs';
 
-export class fileHandler {
+export class TxtHandling {
     /**
      * Read raw data from .xml, .json, .txt
      * @param filepath

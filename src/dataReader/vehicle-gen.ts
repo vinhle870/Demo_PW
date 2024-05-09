@@ -1,4 +1,4 @@
-import { jsonHandler } from "../coreLib/utilities/jsonHandler";
+import { JsonHandling } from '../coreLib/utilities/jsonHandling';
 import { BUSINESS_ENTITY_FOLDER } from "../coreLib/utilities/constants";
 import { faker } from '@faker-js/faker';
 import { DataGenerate } from "../coreLib/utilities/data-generate";
@@ -11,7 +11,7 @@ export class VehicleGen {
    */
   static async generateVehicleInfo(): Promise<object> {
 
-    const vehicleinfo = await jsonHandler.parseJsonTextToObject(BUSINESS_ENTITY_FOLDER + "vehicle.json") as object;
+    const vehicleinfo = await JsonHandling.parseJsonTextToObject(BUSINESS_ENTITY_FOLDER + "vehicle.json") as object;
 
     vehicleinfo['VehicleType'] = "Passenger";
     vehicleinfo['vin'] = faker.vehicle.vin() as string;

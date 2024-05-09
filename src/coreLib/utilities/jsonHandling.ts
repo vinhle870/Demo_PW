@@ -1,5 +1,5 @@
-import { fileHandler } from "./fileHandler";
-export class jsonHandler extends fileHandler
+import { TxtHandling } from './txtHandling';
+export class JsonHandling extends TxtHandling
 {
 
     /**

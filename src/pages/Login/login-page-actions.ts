@@ -17,7 +17,11 @@ export class LoginPageActions extends LoginPage {
             await this.baseComponent.getLocator(this.txt_UserName).fill(dealer['username']);
             await this.baseComponent.getLocator(this.txt_Password).fill(dealer['password']);
             await this.baseComponent.getLocator(this.btn_SignIn).click();
+    }
 
-
+    async validateLoginButtonIsHidden()
+    {
+        let btn_SignIn = await this.baseComponent.getLocator(this.btn_SignIn);
+        await expect(btn_SignIn, 'Login Button Should Be HIDDEN').not.toBeVisible();
     }
 }

@@ -7,11 +7,11 @@ export class HomePageActions extends HomePage {
     {
         super(page);
     }
-    async assertDealerNameOnHeading( dealerName:string) {
+    async validateHeadingContainsText( dealerName:string) {
 
-        const actualName = await this.baseComponent.getLocator(this.heading_DealerName).textContent();
-
-        expect(actualName).toContain(dealerName);
+        //
+        const heading = await this.baseComponent.getLocator(this.heading_DealerName);
+        await expect(heading).toContainText(dealerName);
 
     }
 }
