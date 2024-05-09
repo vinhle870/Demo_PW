@@ -14,5 +14,5 @@ test('TC01: Successfully Login to Dealer Portal', async ({ page }) => {
 
     //Verify Successfully Login
     await new LoginPageActions(page).validateLoginButtonIsHidden();
-    await new HomePageActions(page).validateHeadingContainsText(dealeraccount['DealerName']);
+    await new HomePageActions(page).validateHeadingContainsText(dealeraccount['dealername']);
 });
