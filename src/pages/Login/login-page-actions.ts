@@ -13,7 +13,7 @@ export class LoginPageActions extends LoginPage {
     async loginWithDealerAcc(dealer: object) {
 
             await this.page.goto(await envReader.getDealerUrl());
-
+            console.log("Login with Dealer account: "+dealer['username'] +" - "+dealer['password'])
             await this.baseComponent.getLocator(this.txt_UserName).fill(dealer['username']);
             await this.baseComponent.getLocator(this.txt_Password).fill(dealer['password']);
             await this.baseComponent.getLocator(this.btn_SignIn).click();
