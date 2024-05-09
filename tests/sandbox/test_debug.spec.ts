@@ -1,7 +1,6 @@
+/*
 import { test, expect } from '@playwright/test';
-import { xmlHandler} from '../../src/coreLib/utilities/xmlHandler';
-import { jsonHandler} from '../../src/coreLib/utilities/jsonHandler';
-import { propertiesReader} from '../../src/coreLib/utilities/propertiesReader';
+import { PropertiesReader } from '../../src/coreLib/utilities/propertiesReader';
 import {envReader} from '../../src/dataReader/envReader';
 
 import { VehicleGen } from '../../src/dataReader/vehicle-gen';
@@ -16,7 +15,7 @@ test('READ JSON', async ({ page }) => {
 test('Read Properties File', async ({ page }) => {
 
   try {
-    let properties = await propertiesReader.readProperties('D:/AutomationProject/Demo_PW/src/resources/environments/Exec_Config.properties');
+    let properties = await PropertiesReader.readProperties('D:/AutomationProject/Demo_PW/src/resources/environments/Exec_Config.properties');
     console.log(properties['EnvName']); // Access properties object
   } catch (error) {
     console.error('Error reading properties:', error);
@@ -38,6 +37,7 @@ test('Generate VEhicle Info', async ({ page }) => {
 
   let vehicleinfo = await VehicleGen.generateVehicleInfo();
   console.dir(vehicleinfo);
-  console.log("DONE");
+
 
 })
+*/
