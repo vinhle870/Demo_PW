@@ -1,9 +1,17 @@
 import { HomePage } from "./home-page";
-export class HomePageActions extends HomePage
+import { Page, expect } from '@playwright/test';
 
-{
-    async assertHomePageDisplayCorrect()
+export class HomePageActions extends HomePage {
+
+    constructor(page:Page)
     {
-        
+        super(page);
+    }
+    async assertDealerNameOnHeading( dealerName:string) {
+
+        const actualName = await this.baseComponent.getLocator(this.heading_DealerName).textContent();
+
+        expect(actualName).toContain(dealerName);
+
     }
 }
