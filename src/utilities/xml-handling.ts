@@ -1,5 +1,5 @@
 import { parseString } from 'xml2js';
-import { TxtHandling } from './txtHandling';
+import { TxtHandling } from './txt-handling';
 export class XmlHandling extends TxtHandling {
 
   /**

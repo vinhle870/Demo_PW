@@ -1,4 +1,4 @@
-import { TxtHandling } from './txtHandling';
+import { TxtHandling } from './txt-handling';
 export class JsonHandling extends TxtHandling
 {
 
