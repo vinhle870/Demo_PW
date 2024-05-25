@@ -1,22 +1,24 @@
-import { Locator, type Page } from '@playwright/test';
-export class BasePage {
-    page: Page;
+import { test as base } from '@playwright/test';
+import { LoginPage } from './login-page';
+import { HomePage } from './home-page';
 
-    constructor(page: Page) {
-        this.page = page;
+// Declare the types of your fixtures.
+type MyFixtures = {
+    dealerAccount: object;
+    loginPage: LoginPage;
+    homePage: HomePage;
+};
+
+export const test = base.extend<MyFixtures>({
+
+    loginPage: async ({ page }, use) => {
+        // Use the fixture value in the test.
+        await use(new LoginPage(page));
+    },
+
+    homePage: async ({ page }, use) => {
+        await use(new HomePage(page));
     }
+});
 
-    async navigatetoPage(url: string) {
-        await this.page.goto(url);
-    }
-
-    /**
-  * Find and return the UI Field's locator
-  * @param selector
-  * @returns Locator
-  */
-    getLocator(selector: string): Locator {
-
-        return this.page.locator(selector);
-    }
-}
+export { expect } from '@playwright/test';

@@ -15,11 +15,7 @@ export class JsonHandling extends TxtHandling
 
         return jsonObject;
         }catch(error){
-            console.error('Error reading or parsing JSON file:', error);
-            throw error; // Or return a default value
+            return undefined; // Or return a default value
         }
-
-    }//func
-
-
+    }
 }

@@ -6,12 +6,12 @@ export class Dealer {
      * @param dealer
      * @returns
      */
-    getDealerAcc(dealer: object):object {
+    initiateDealerInfo(dealer:object):object {
+
         dealer['UserName'] = process.env.DealerUserName as string;
         dealer['PassWord'] = process.env.DealerPassWord as string;
         dealer['DealerName'] = process.env.DealerName as string;
         dealer['Url'] = process.env.DealerUrl as string;
-
         return dealer;
     }
 

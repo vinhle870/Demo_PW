@@ -16,8 +16,7 @@ export class XmlHandling extends TxtHandling {
       });
       return xmlData;
     } catch (error) {
-      console.error('Error reading or parsing XML file:', error);
-      return undefined;
+        return undefined;
     }
   }
 

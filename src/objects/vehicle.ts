@@ -6,7 +6,7 @@ export class Vehicle{
      * Get Vehicle Info from data file and generate randomly info
      * @param vehicle
      */
-    async getVehicleInfo(vehicleinfo:object)
+    initiateVehicleInfo(vehicleinfo:object)
     {
         vehicleinfo['VehicleType'] = "Passenger";
         vehicleinfo['vin'] = faker.vehicle.vin() as string;

@@ -1,27 +1,21 @@
-import { test, expect } from '@playwright/test';
-import { DataHandling}  from '../../src/data-handling/data-handling.ts';
-import { LoginPage } from '../../src/pages/login-page';
-import { HomePage } from '../../src/pages/home-page';
-import {Dealer} from "../../src/objects/dealer";
+import { TestBase } from '../test-base'
+import { test } from '../../src/pages/base-page';
 
 test.describe('Dealer Portal Account Verification', () => {
+    let dealerAccount;
 
-    let dealeraccount;
+    test.beforeEach(async ({ loginPage }) => {
 
-    test.beforeEach(async ({ page }) => {
-
-        console.log("Get Dealer Account Info");
-        dealeraccount = new Dealer().getDealerAcc(await DataHandling.readDealerAcc());
-
-        console.log("Log Into Dealer Portal");
-        await new LoginPage(page).loginWithDealerAcc(dealeraccount);
+        console.log('Get Dealer Account Info');
+        dealerAccount = TestBase.getDealerAccount();
+        console.log('Log Into Dealer Portal');
+        await loginPage.loginWithDealerAcc(dealerAccount);
     });
 
-    test('TC01: Successfully Login to Dealer Portal', async ({ page }) => {
+    test('TC01: Successfully Login to Dealer Portal', async ({ loginPage, homePage }) => {
 
-        console.log("Verify Dealer Login Successfully");
-        await new LoginPage(page).validateLoginButtonIsHidden();
-        await new HomePage(page).validateHeadingContainsText(dealeraccount['dealername']);
+        console.log('Verify Dealer Login Successfully');
+        await loginPage.validateLoginButtonIsHidden();
+        await homePage.validateHeadingContainsText(dealerAccount['DealerName']);
     });
-
 });

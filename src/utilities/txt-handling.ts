@@ -6,9 +6,12 @@ export class TxtHandling {
      * @param filepath
      * @returns string
      */
-    static async readRawFile(filepath: string) {
-        const data = await fsPromises.readFile(filepath, 'utf-8');
-        return data;
-    }
+    static async readRawFile(filepath: string): Promise<string | undefined> {
 
+        try{
+            return fsPromises.readFile(filepath, 'utf-8');
+        }catch(error){
+            return undefined;
+        }
+    }
 }

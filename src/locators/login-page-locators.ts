@@ -1,7 +1,3 @@
-import { BasePage } from '../pages/base-page';
-
-
-
 export class LoginPageLocators {
 
     static txt_UserName: string = "//input[@name='_username']";
