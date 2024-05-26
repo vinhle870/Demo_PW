@@ -10,6 +10,28 @@ on:
         description: 'The environment to deploy to (e.g., staging, production)'
         required: true
         type: string
+      DealerUrl:
+        description: 'URL'
+        required: true
+        type: choice
+        options:
+        - ${{ vars.DEV_URL }}
+        - ${{ vars.PROD_URL }}
+      DealerUserName:
+        description: 'UserName to Login'
+        required: true
+        type: choice
+        options:
+        - ${{ vars.DEV_DealerUserName }}
+        - ${{ vars.PROD_DealerUserName }}
+      DealerPassWord:
+        description: 'Password to Login'
+        required: true
+        type: choice
+        options:
+        - ${{ vars.DEV_DealerPassWord }}
+        - ${{ vars.PROD_DealerPassWord }}
+     
 jobs:
   test:
     timeout-minutes: 60
