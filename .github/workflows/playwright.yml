@@ -4,6 +4,12 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+    environment:
+      description: 'The environment to deploy to (e.g., staging, production)'
+      required: true
+      type: string
 jobs:
   test:
     timeout-minutes: 60
