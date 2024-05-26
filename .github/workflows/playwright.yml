@@ -35,10 +35,10 @@ jobs:
             echo "::set-env name=DealerPassWord::${{ vars.PROD_DealerPassWord }}"
             echo "::set-env name=DealerName::${{ vars.PROD_DealerName }}"
           fi
-          echo $DealerUrl
-          echo $DealerUserName
-          echo $DealerPassWord
-          echo $DealerName
+          echo "$DealerUrl"
+          echo "$DealerUserName"
+          echo "$DealerPassWord"
+          echo "$DealerName"
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
