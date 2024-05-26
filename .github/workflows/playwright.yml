@@ -30,9 +30,9 @@ jobs:
         DealerPassWord: ${{ secrets.DEV_DealerPassWord }}
         DealerName: ${{ secrets.DEV_DealerName }}
       run: |
-          echo "${{ github.event.inputs.environment }}"
-          echo "${{ vars.DEV_DealerUserName }}"
-          echo "${{ vars.DEV_DealerUrl }}"
+          echo "environment: ${{ github.event.inputs.environment }}"
+          echo "DEV_DealerUserName: ${{ vars.DEV_DealerUserName }}"
+          echo "DEV_DealerUrl: ${{ vars.DEV_DealerUrl }}"
           echo "$DealerPassWord"
           echo "$DealerName"
     - name: Install dependencies
