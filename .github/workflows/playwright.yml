@@ -24,7 +24,7 @@ jobs:
         node-version: 18
     - name: Set environment variable
       run: |
-          echo ${{ inputs.environment }}
+          #echo ${{ inputs.environment }}
           echo "$ENVIRONMENT"
           if [[ ${{ inputs.environment }} == 'DEV' ]]; then
             echo "::set-env name=DealerUrl::${{ vars.DEV_DealerUrl }}"
