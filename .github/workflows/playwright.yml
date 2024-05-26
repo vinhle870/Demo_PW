@@ -30,11 +30,11 @@ jobs:
         DealerPassWord: ${{ vars.DEV_DealerPassWord }}
         DealerName: ${{ vars.DEV_DealerName }}
       run: |
-          echo "environment: ${{ github.event.inputs.environment }}"
-          echo "DealerUrl: $DealerUrl"
-          echo "DealerUserName: $DealerUserName"
-          echo "$DealerPassWord"
-          echo "$DealerName"
+        echo "environment: ${{ github.event.inputs.environment }}"
+        echo "DealerUrl: $DealerUrl"
+        echo "DealerUserName: $DealerUserName"
+        echo "DealerPassWord: $DealerPassWord"
+        echo "DealerName: $DealerName"
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
