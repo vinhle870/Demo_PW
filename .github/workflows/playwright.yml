@@ -24,8 +24,8 @@ jobs:
         node-version: 18
     - name: Set environment variable
       run: |
-          echo "$ENVIRONMENT"
-          if [[ ${{ inputs.environment }} == 'DEV' ]]; then
+          echo "${{ github.event.inputs.environment }}"
+          if [[ ${{ github.event.inputs.environment }} == 'DEV' ]]; then
             echo "::set-env name=DealerUrl::${{ vars.DEV_DealerUrl }}"
             echo "::set-env name=DealerUserName::${{ vars.DEV_DealerUserName }}"
             echo "::set-env name=DealerPassWord::${{ vars.DEV_DealerPassWord }}"
