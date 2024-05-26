@@ -9,17 +9,17 @@ export class TestBase{
    * Get Dealer Account
    * @returns object
    */
-    static getDealerAccount():object{
-
-    let dealer = DataHandling.parseDealerInfoFromFile(Constants.DEALER_ACCOUNT_FILE_NAME);
-    return new Dealer().initiateDealerInfo(dealer);
+    getDealerAccount():object {
+      let dealer = DataHandling.parseDealerInfoFromFile(Constants.DEALER_ACCOUNT_FILE_NAME);
+      return new Dealer().initiateDealerInfo(dealer);
   }
 
-  static getVehicleInfo():object{
-
-    console.log('Get Vehicle Info');
-    const vehicle = DataHandling.parseVehicleInfoFromFile(Constants.VEHICLE_FILE_NAME)
-    return new Vehicle().initiateVehicleInfo(vehicle);
-
+  /**
+   * Get Vehicle Info
+   * @returns object
+   */
+  getVehicleInfo():object {
+      const vehicle = DataHandling.parseVehicleInfoFromFile(Constants.VEHICLE_FILE_NAME)
+      return new Vehicle().initiateVehicleInfo(vehicle);
   }
 }
