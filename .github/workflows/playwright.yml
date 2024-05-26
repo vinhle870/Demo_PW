@@ -26,15 +26,10 @@ jobs:
       run: |
           echo "${{ github.event.inputs.environment }}"
           if [[ ${{ github.event.inputs.environment }} == 'DEV' ]]; then
-            echo "::set-env name=DealerUrl::${{ vars.DEV_DealerUrl }}"
-            echo "::set-env name=DealerUserName::${{ vars.DEV_DealerUserName }}"
-            echo "::set-env name=DealerPassWord::${{ vars.DEV_DealerPassWord }}"
-            echo "::set-env name=DealerName::${{ vars.DEV_DealerName }}"
-          else
-            echo "::set-env name=DealerUrl::${{ vars.PROD_DealerUrl }}"
-            echo "::set-env name=DealerUserName::${{ vars.PROD_DealerUserName }}"
-            echo "::set-env name=DealerPassWord::${{ vars.PROD_DealerPassWord }}"
-            echo "::set-env name=DealerName::${{ vars.PROD_DealerName }}"
+            echo "::set-env name=DealerUrl::${{ secrets.DEV_DealerUrl }}"
+            echo "::set-env name=DealerUserName::${{ secrets.DEV_DealerUserName }}"
+            echo "::set-env name=DealerPassWord::${{ secrets.DEV_DealerPassWord }}"
+            echo "::set-env name=DealerName::${{ secrets.DEV_DealerName }}"
           fi
           echo "$DealerUrl"
           echo "$DealerUserName"
