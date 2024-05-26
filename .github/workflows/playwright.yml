@@ -26,10 +26,10 @@ jobs:
       run: |
           echo "${{ github.event.inputs.environment }}"
           if [[ ${{ github.event.inputs.environment }} == 'DEV' ]]; then
-            echo "DealerUrl=${{secrets.DEV_DealerUrl}}" >> "$GITHUB_ENV"
-            echo "DealerUserName=${{secrets.DEV_DealerUserName}}" >> "$GITHUB_ENV"
-            echo "DealerPassWord=${{secrets.DEV_DealerPassWord}}" >> "$GITHUB_ENV"
-            echo "DealerName=${{secrets.DEV_DealerName}}" >> "$GITHUB_ENV"
+            echo "DealerUrl=${{secrets.DEV_DealerUrl }}" >> "$GITHUB_ENV"
+            echo "DealerUserName=${{ secrets.DEV_DealerUserName }}" >> "$GITHUB_ENV"
+            echo "DealerPassWord=${{ secrets.DEV_DealerPassWord }} " >> "$GITHUB_ENV"
+            echo "DealerName=${{ secrets.DEV_DealerName }} " >> "$GITHUB_ENV"
           fi
           echo "$DealerUrl"
           echo "$DealerUserName"
