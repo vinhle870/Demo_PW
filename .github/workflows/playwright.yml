@@ -31,10 +31,11 @@ jobs:
             echo "DealerPassWord=${{ secrets.DEV_DealerPassWord }} " >> "$GITHUB_ENV"
             echo "DealerName=${{ secrets.DEV_DealerName }} " >> "$GITHUB_ENV"
           fi
-          echo "$DealerUrl"
-          echo "$DealerUserName"
-          echo "$DealerPassWord"
-          echo "$DealerName"
+          printf '%s\n' "$DealerUrl"
+          printf '%s\n' "$DealerUserName"
+          printf '%s\n' "$DealerPassWord"
+          printf '%s\n' "$DealerName"
+          printf '%s\n' "$DealerUserName"
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
