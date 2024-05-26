@@ -9,29 +9,10 @@ on:
       environment:
         description: 'The environment to deploy to (e.g., staging, production)'
         required: true
-        type: string
-      DealerUrl:
-        description: 'URL'
-        required: true
         type: choice
         options:
-        - ${{ vars.DEV_URL }}
-        - ${{ vars.PROD_URL }}
-      DealerUserName:
-        description: 'UserName to Login'
-        required: true
-        type: choice
-        options:
-        - ${{ vars.DEV_DealerUserName }}
-        - ${{ vars.PROD_DealerUserName }}
-      DealerPassWord:
-        description: 'Password to Login'
-        required: true
-        type: choice
-        options:
-        - ${{ vars.DEV_DealerPassWord }}
-        - ${{ vars.PROD_DealerPassWord }}
-     
+        - DEV
+        - PROD
 jobs:
   test:
     timeout-minutes: 60
@@ -41,6 +22,23 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 18
+    - name: Set environment variable
+    - run: |
+          if [[ ${{ github.event.inputs.environment }} == 'DEV' ]]; then
+            echo "::set-env name=DealerUrl::${{ vars.DEV_DealerUrl }}"
+            echo "::set-env name=DealerUserName::${{ vars.DEV_DealerUserName }}"
+            echo "::set-env name=DealerPassWord::${{ vars.DEV_DealerPassWord }}"
+            echo "::set-env name=DealerName::${{ vars.DEV_DealerName }}"
+          else
+            echo "::set-env name=DealerUrl::${{ vars.PROD_DealerUrl }}"
+            echo "::set-env name=DealerUserName::${{ vars.PROD_DealerUserName }}"
+            echo "::set-env name=DealerPassWord::${{ vars.PROD_DealerPassWord }}"
+            echo "::set-env name=DealerName::${{ vars.PROD_DealerName }}"
+          fi
+          echo $DealerUrl
+          echo $DealerUserName
+          echo $DealerPassWord
+          echo $DealerName
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
