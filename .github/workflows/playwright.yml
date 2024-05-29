@@ -31,7 +31,7 @@ jobs:
         DealerName: ${{ vars.DEV_DEALERNAME }}
       run: |
         echo "environment: ${{ github.event.inputs.environment }}"
-        #echo "DealerUrl=${{ vars.DEV_DEALERURL }} ">> "$GITHUB_ENV"
+        echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
         echo "$DEV_DEALERURL"
         #echo "DealerUrl: ${{DealerUrl}}"
         echo "DealerUserName: $DealerUserName"
