@@ -32,7 +32,7 @@ jobs:
       run: |
         echo "environment: ${{ github.event.inputs.environment }}"
         echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
-        echo "DealerUserName: ${{ Staging.DEV_DEALERUSERNAME }}"
+        echo "DealerUserName: ${{ vars.DEV_DEALERUSERNAME }}"
         echo "DealerPassWord: $DealerPassWord"
         echo "DealerName: $DealerName"
   #  - name: Install dependencies
