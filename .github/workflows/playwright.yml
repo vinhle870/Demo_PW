@@ -32,7 +32,7 @@ jobs:
       run: |
         echo "environment: ${{ github.event.inputs.environment }}"
         #echo "DealerUrl=${{ vars.DEV_DEALERURL }} ">> "$GITHUB_ENV"
-        echo $DEV_DEALERURL
+        echo "${{DealerUrl}}"
         echo "DealerUrl: ${{DealerUrl}}"
         echo "DealerUserName: $DealerUserName"
         echo "DealerPassWord: $DealerPassWord"
