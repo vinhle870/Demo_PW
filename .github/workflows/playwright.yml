@@ -23,7 +23,7 @@ jobs:
       with:
         node-version: 18
     - name: Set environment variable for DEV env
-      if: ${{ github.event.inputs.environment }}== 'DEV'
+      #if: ${{ github.event.inputs.environment }}== 'DEV'
       env:
         DealerUrl: $DEV_DEALERURL
         DealerUserName: ${{ vars.DEV_DEALERUSERNAME }}
