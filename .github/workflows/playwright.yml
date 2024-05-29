@@ -26,9 +26,9 @@ jobs:
       if: ${{ github.event.inputs.environment }}== 'DEV'
       env:
         DealerUrl: $DEV_DEALERURL
-        DealerUserName: $DEV_DEALERUSERNAME
-        DealerPassWord: ${{ vars.DEV_DEALERPASSWORD }}
-        DealerName: ${{ vars.DEV_DEALERNAME }}
+        DealerUserName: ${{ env.DEV_DEALERUSERNAME }}
+        DealerPassWord: ${{ env.DEV_DEALERPASSWORD }}
+        DealerName: ${{ env.DEV_DEALERNAME }}
       run: |
         echo "environment: ${{ github.event.inputs.environment }}"
         echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
