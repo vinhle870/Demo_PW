@@ -26,17 +26,17 @@ jobs:
     - name: Set environment variable for DEV env
       #if: ${{ github.event.inputs.environment }}== 'DEV'
       env:
-        DealerUrl: ${{vars.DEV_DEALERURL}}
-        DealerUserName: ${{ vars.DEV_DEALERUSERNAME }}
+        DEALERURL: ${{vars.DEV_DEALERURL}}
+        DEALERUSERNAME: ${{ vars.DEV_DEALERUSERNAME }}
         DealerPassWord: ${{ vars.DEV_DEALERPASSWORD }}
-        DealerName: ${{ vars.DEV_DEALERNAME }}
+        DEALERNAME: ${{ vars.DEV_DEALERNAME }}
       run: |
         echo "environment: ${{ github.event.inputs.environment }}"
         echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
         echo "DealerUrl: ${{ env.DealerUrl }}"
-        echo "DealerUserName: ${{ vars.DealerUserName }}"
+        echo "DealerUserName: $DEALERUSERNAME
         echo "DealerPassWord: ${{vars.DealerPassWord}}"
-        echo "DealerName: ${{vars.DealerName}}"
+        echo "DealerName: ${{vars.DEALERNAME}}"
   #  - name: Install dependencies
   #    run: npm ci
   #  - name: Install Playwright Browsers
