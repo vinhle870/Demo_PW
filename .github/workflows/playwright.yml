@@ -17,6 +17,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    environment: Stanging
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -25,16 +26,17 @@ jobs:
     - name: Set environment variable for DEV env
       #if: ${{ github.event.inputs.environment }}== 'DEV'
       env:
-        DealerUrl: $DEV_DEALERURL
+        DealerUrl: ${{DEV_DEALERURL}}
         DealerUserName: ${{ vars.DEV_DEALERUSERNAME }}
-        DealerPassWord: ${{ env.DEV_DEALERPASSWORD }}
-        DealerName: ${{ env.DEV_DEALERNAME }}
+        DealerPassWord: ${{ vars.DEV_DEALERPASSWORD }}
+        DealerName: ${{ vars.DEV_DEALERNAME }}
       run: |
         echo "environment: ${{ github.event.inputs.environment }}"
         echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
-        echo "DealerUserName: ${{ env.DealerUserName }}"
-        echo "DealerPassWord: $DealerPassWord"
-        echo "DealerName: $DealerName"
+        echo "DealerUrl: ${{ env.DealerUrl }}"
+        echo "DealerUserName: ${{ vars.DealerUserName }}"
+        echo "DealerPassWord: ${{vars.DealerPassWord}}"
+        echo "DealerName: ${{vars.DealerName}}"
   #  - name: Install dependencies
   #    run: npm ci
   #  - name: Install Playwright Browsers
