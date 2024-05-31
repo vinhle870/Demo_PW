@@ -26,7 +26,7 @@ jobs:
     - name: Set environment variable for DEV env
       #if: ${{ github.event.inputs.environment }}== 'DEV'
       env:
-        DealerUrl: ${{var.DEV_DEALERURL}}
+        DealerUrl: ${{vars.DEV_DEALERURL}}
         DealerUserName: ${{ vars.DEV_DEALERUSERNAME }}
         DealerPassWord: ${{ vars.DEV_DEALERPASSWORD }}
         DealerName: ${{ vars.DEV_DEALERNAME }}
