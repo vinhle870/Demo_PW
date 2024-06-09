@@ -35,7 +35,7 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: |
-        echo "DealerUrl: ${{ env.DEALERURL }}"
+        echo "DealerUrl: $DEALERURL"
         echo "DealerUserName: ${{env.DEALERUSERNAME}}"
         echo "DealerPassWord: ${{env.DEALERPASSWORD}}"
         echo "DealerName: ${{env.DEALERNAME}}"
