@@ -39,7 +39,7 @@ jobs:
         echo "DealerUserName: ${{env.DEALERUSERNAME}}"
         echo "DealerPassWord: ${{env.DEALERPASSWORD}}"
         echo "DealerName: ${{env.DEALERNAME}}"
-      #DealerUrl= '$DEALERURL' DealerUserName= '${{env.DEALERUSERNAME}} DealerPassWord=${{env.DEALERPASSWORD}} DealerName=${{env.DEALERNAME}} npx playwright test
+        DealerUrl=$DEALERURL DealerUserName= ${{env.DEALERUSERNAME}} DealerPassWord=${{env.DEALERPASSWORD}} DealerName=${{env.DEALERNAME}} npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
