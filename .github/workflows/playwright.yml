@@ -19,30 +19,26 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
+    env:
+        DEALERURL: ${{vars.DEV_DEALERURL}}
+        DEALERUSERNAME: ${{ vars.DEV_DEALERUSERNAME }}
+        DEALERPASSWORD: ${{ vars.DEV_DEALERPASSWORD }}
+        DEALERNAME: ${{ vars.DEV_DEALERNAME }}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
         node-version: 18
-    - name: Set environment variable for Staging env
-      env:
-        DEALERURL: ${{vars.DEV_DEALERURL}}
-        DEALERUSERNAME: ${{ vars.DEV_DEALERUSERNAME }}
-        DEALERPASSWORD: ${{ vars.DEV_DEALERPASSWORD }}
-        DEALERNAME: ${{ vars.DEV_DEALERNAME }}
-      run: |
-        echo "DealerUrl: ${{ env.DEALERURL }}"
-        echo "DealerUserName: ${{env.DEALERUSERNAME}}"
-        echo "DealerPassWord: ${{env.DEALERPASSWORD}}"
-        echo "DealerName: ${{env.DEALERNAME}}"
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: |
-       echo '$DEALERURL'
-       echo '${{ env.DEALERURL }}'
+        echo "DealerUrl: ${{ env.DEALERURL }}"
+        echo "DealerUserName: ${{env.DEALERUSERNAME}}"
+        echo "DealerPassWord: ${{env.DEALERPASSWORD}}"
+        echo "DealerName: ${{env.DEALERNAME}}"
       #DealerUrl= '$DEALERURL' DealerUserName= '${{env.DEALERUSERNAME}} DealerPassWord=${{env.DEALERPASSWORD}} DealerName=${{env.DEALERNAME}} npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
