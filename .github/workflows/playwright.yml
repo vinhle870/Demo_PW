@@ -5,7 +5,7 @@ on:
 #  pull_request:
 #    branches: [ main, master ]
   schedule:
-    - cron: '30 17 * * *'
+    - cron: '05 18 * * *'
   workflow_dispatch:
     inputs:
       environment:
@@ -17,7 +17,7 @@ on:
         - PROD
 jobs:
   Job_1_Schedule-Trigger-Test-Staging:
-    if: github.event.schedule == '30 17 * * *'
+    if: github.event.schedule == '05 18 * * *'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: Staging
@@ -40,7 +40,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: playwright-report
+        name: playwright-report-${{ job.name }}
         path: playwright-report/
         retention-days: 30
         
@@ -68,7 +68,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: playwright-report
+        name: playwright-report-${{ job.name }}
         path: playwright-report/
         retention-days: 30
   
