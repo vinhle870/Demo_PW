@@ -17,7 +17,7 @@ on:
         - PROD
 jobs:
   Manually-Trigger-Test-Staging:
-    if: github.event.schedule != '0 13 * * *' ${{ github.event.inputs.environment }} == 'Staging'
+    if: github.event.schedule != '0 13 * * *' && ${{ github.event.inputs.environment }} == 'Staging'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
@@ -43,7 +43,9 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+        
   Schedule-Trigger-Test-Staging:
+    if: github.event.schedule != '0 13 * * *'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: Staging
