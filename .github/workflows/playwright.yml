@@ -5,7 +5,7 @@ on:
 #  pull_request:
 #    branches: [ main, master ]
   schedule:
-    - cron: '35 18 * * *'
+    - cron: '30 16 * * *'
   workflow_dispatch:
     inputs:
       environment:
@@ -17,7 +17,7 @@ on:
         - PROD
 jobs:
   Job_1_Schedule-Trigger-Test-Staging:
-    if: github.event.schedule == '35 18 * * *'
+    if: github.event.schedule == '30 16 * * *'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: Staging
