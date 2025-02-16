@@ -117,10 +117,11 @@ jobs:
           retention-days: 30
 
   Job_3_Publish-Playwright-Report:
+    if: always()
     needs: 
       - Job_1_Schedule-Trigger-Test-Staging
       - Job_2_Manually-Trigger-Test-Staging
-    if: always()
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
