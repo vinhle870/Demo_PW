@@ -120,6 +120,7 @@ jobs:
     needs: 
       - Job_1_Schedule-Trigger-Test-Staging
       - Job_2_Manually-Trigger-Test-Staging
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
