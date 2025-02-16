@@ -108,7 +108,6 @@ jobs:
           retention-days: 30
 
   deploy_Execution_Report:
-    needs: Job_2_Manually-Trigger-Test-Staging
     runs-on: ubuntu-latest
 
     steps:
