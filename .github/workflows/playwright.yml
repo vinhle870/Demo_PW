@@ -1,9 +1,5 @@
 name: Playwright Tests
 on:
-#  push:
-#    branches: [ main, master ]
-#  pull_request:
-#    branches: [ main, master ]
   schedule:
     - cron: '30 16 * * *'
   workflow_dispatch:
@@ -15,6 +11,7 @@ on:
         options:
         - Staging
         - PROD
+
 jobs:
   Job_1_Schedule-Trigger-Test-Staging:
     if: github.event.schedule == '30 16 * * *'
@@ -22,47 +19,21 @@ jobs:
     runs-on: ubuntu-latest
     environment: Staging
     env:
-        DEALERURL: ${{vars.DEV_DEALERURL}}
-        DEALERUSERNAME: ${{ vars.DEV_DEALERUSERNAME }}
-        DEALERPASSWORD: ${{ vars.DEV_DEALERPASSWORD }}
-        DEALERNAME: ${{ vars.DEV_DEALERNAME }}
+      DEALERURL: ${{ vars.DEV_DEALERURL }}
+      DEALERUSERNAME: ${{ vars.DEV_DEALERUSERNAME }}
+      DEALERPASSWORD: ${{ vars.DEV_DEALERPASSWORD }}
+      DEALERNAME: ${{ vars.DEV_DEALERNAME }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Scheduller Trigger- Run Playwright tests
-      run: DealerUrl='${{env.DEALERURL}}' DealerUserName='${{env.DEALERUSERNAME}}' DealerPassWord='${{env.DEALERPASSWORD}}' DealerName='${{env.DEALERNAME}}' npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report-${{ job.name }}
-        path: playwright-report/
-        retention-days: 30
-        
-  Job_2_Manually-Trigger-Test-Staging:
-    if: github.event.inputs.environment == 'Staging'
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}
-    env:
-        DEALERURL: ${{vars.DEV_DEALERURL}}
-        DEALERUSERNAME: ${{ vars.DEV_DEALERUSERNAME }}
-        DEALERPASSWORD: ${{ vars.DEV_DEALERPASSWORD }}
-        DEALERNAME: ${{ vars.DEV_DEALERNAME }}
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    - name: Clear NPM Cache
-      run: npm cache clean --force
-    - name: Install System Dependencies
-      run: |
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Clear NPM Cache
+        run: npm cache clean --force
+
+      - name: Install System Dependencies
+        run: |
           sudo apt-get update && sudo apt-get install -y \
             libasound2 \
             libnss3 \
@@ -71,21 +42,65 @@ jobs:
             libgtk-3-0 \
             libgbm-dev \
             libxshmfence1
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Manual Trigger - Run Playwright tests
-      run: DealerUrl='${{env.DEALERURL}}' DealerUserName='${{env.DEALERUSERNAME}}' DealerPassWord='${{env.DEALERPASSWORD}}' DealerName='${{env.DEALERNAME}}' npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report-${{ job.name }}
-        path: playwright-report/
-        retention-days: 30
-  
+
+      - name: Install dependencies
+        run: npm ci && npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: DealerUrl='${{ env.DEALERURL }}' DealerUserName='${{ env.DEALERUSERNAME }}' DealerPassWord='${{ env.DEALERPASSWORD }}' DealerName='${{ env.DEALERNAME }}' npx playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-staging
+          path: playwright-report/
+          retention-days: 30
+
+  Job_2_Manually-Trigger-Test-Staging:
+    if: github.event.inputs.environment == 'Staging'
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    env:
+      DEALERURL: ${{ vars.DEV_DEALERURL }}
+      DEALERUSERNAME: ${{ vars.DEV_DEALERUSERNAME }}
+      DEALERPASSWORD: ${{ vars.DEV_DEALERPASSWORD }}
+      DEALERNAME: ${{ vars.DEV_DEALERNAME }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Clear NPM Cache
+        run: npm cache clean --force
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y \
+            libasound2 \
+            libnss3 \
+            libxss1 \
+            libatk-bridge2.0-0 \
+            libgtk-3-0 \
+            libgbm-dev \
+            libxshmfence1
+
+      - name: Install dependencies
+        run: npm ci && npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: DealerUrl='${{ env.DEALERURL }}' DealerUserName='${{ env.DEALERUSERNAME }}' DealerPassWord='${{ env.DEALERPASSWORD }}' DealerName='${{ env.DEALERNAME }}' npx playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-staging
+          path: playwright-report/
+          retention-days: 30
+
   deploy_Execution_Report:
-    needs: Job_2_Manually-Trigger-Test-Staging  # Only deploy if the test job completes successfully
+    needs: Job_2_Manually-Trigger-Test-Staging
     runs-on: ubuntu-latest
 
     steps:
@@ -95,7 +110,7 @@ jobs:
       - name: Download Playwright Report
         uses: actions/download-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-staging
           path: playwright-report
 
       - name: Deploy Playwright Report to GitHub Pages
