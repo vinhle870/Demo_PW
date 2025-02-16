@@ -107,9 +107,6 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Download Playwright Report
         uses: actions/download-artifact@v4
         with:
