@@ -107,10 +107,6 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-  deploy_Execution_Report:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
