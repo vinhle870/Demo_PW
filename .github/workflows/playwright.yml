@@ -64,7 +64,7 @@ jobs:
   Job_2_Manually-Trigger-Test-Staging:
     if: github.event.inputs.environment == 'Staging'
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # 22.04 is stable version for cicd. Latest version: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     env:
       DEALERURL: ${{ vars.DEV_DEALERURL }}
