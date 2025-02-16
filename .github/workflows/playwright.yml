@@ -9,8 +9,8 @@ on:
         required: true
         type: choice
         options:
-        - Staging
-        - PROD
+          - Staging
+          - PROD
 
 jobs:
   Job_1_Schedule-Trigger-Test-Staging:
@@ -37,7 +37,6 @@ jobs:
 
       - name: Install System Dependencies
         run: |
-          sudo apt-cache search libasound2
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             libasound2 \
@@ -52,10 +51,15 @@ jobs:
         run: npm ci && npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: DealerUrl='${{ env.DEALERURL }}' DealerUserName='${{ env.DEALERUSERNAME }}' DealerPassWord='${{ env.DEALERPASSWORD }}' DealerName='${{ env.DEALERNAME }}' npx playwright test
+        run: |
+          DealerUrl='${{ env.DEALERURL }}' \
+          DealerUserName='${{ env.DEALERUSERNAME }}' \
+          DealerPassWord='${{ env.DEALERPASSWORD }}' \
+          DealerName='${{ env.DEALERNAME }}' \
+          npx playwright test
 
       - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+        if: always()
         with:
           name: playwright-report-staging
           path: playwright-report/
@@ -64,7 +68,7 @@ jobs:
   Job_2_Manually-Trigger-Test-Staging:
     if: github.event.inputs.environment == 'Staging'
     timeout-minutes: 60
-    runs-on: ubuntu-22.04 # 22.04 is stable version for cicd. Latest version: ubuntu-latest
+    runs-on: ubuntu-22.04
     environment: ${{ github.event.inputs.environment }}
     env:
       DEALERURL: ${{ vars.DEV_DEALERURL }}
@@ -98,27 +102,36 @@ jobs:
         run: npm ci && npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: DealerUrl='${{ env.DEALERURL }}' DealerUserName='${{ env.DEALERUSERNAME }}' DealerPassWord='${{ env.DEALERPASSWORD }}' DealerName='${{ env.DEALERNAME }}' npx playwright test
+        run: |
+          DealerUrl='${{ env.DEALERURL }}' \
+          DealerUserName='${{ env.DEALERUSERNAME }}' \
+          DealerPassWord='${{ env.DEALERPASSWORD }}' \
+          DealerName='${{ env.DEALERNAME }}' \
+          npx playwright test
 
       - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+        if: always()
         with:
           name: playwright-report-staging
           path: playwright-report/
           retention-days: 30
-    
-  Job_3_Pulish-PlayWright-Report:
-      needs: Job_2_Manually-Trigger-Test-Staging
-      runs-on: ubuntu-latest
-      steps:
+
+  Job_3_Publish-Playwright-Report:
+    needs: 
+      - Job_1_Schedule-Trigger-Test-Staging
+      - Job_2_Manually-Trigger-Test-Staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Download Playwright Report
-      - uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: playwright-report-staging
           path: playwright-report
           
       - name: Deploy Playwright Report to GitHub Pages
-      - uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./playwright-report
