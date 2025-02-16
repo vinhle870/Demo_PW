@@ -108,7 +108,7 @@ jobs:
           retention-days: 30
     
   Job_3_Pulish-PlayWright-Report:
-      needs: Job_1_Schedule-Trigger-Test-Staging
+      needs: Job_2_Manually-Trigger-Test-Staging
       runs-on: ubuntu-latest
       steps:
       - name: Download Playwright Report
