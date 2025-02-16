@@ -132,6 +132,9 @@ jobs:
           name: playwright-report-staging
           path: playwright-report
           
+      - name: Debug List Playwright Report Files
+        run: ls -R playwright-report || echo "No files found!"
+          
       - name: Deploy Playwright Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
