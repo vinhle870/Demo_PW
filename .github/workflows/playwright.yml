@@ -79,6 +79,9 @@ jobs:
 
       - name: Clear NPM Cache
         run: npm cache clean --force
+        
+      - name: Check Ubuntu Version
+        run: lsb_release -a
 
       - name: Install System Dependencies
         run: |
