@@ -106,15 +106,19 @@ jobs:
           name: playwright-report-staging
           path: playwright-report/
           retention-days: 30
-
+    
+  Job_3_Pulish-PlayWright-Report:
+      needs: Job_1_Schedule-Trigger-Test-Staging
+      runs-on: ubuntu-latest
+      steps:
       - name: Download Playwright Report
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: playwright-report-staging
           path: playwright-report
-
+          
       - name: Deploy Playwright Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./playwright-report
